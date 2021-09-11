@@ -9,6 +9,7 @@ import green from "./green.png";
 import { motion } from "framer-motion";
 function App() {
   const [value, setValue] = React.useState(0);
+  const [toggle, setToggle] = React.useState(1);
   return (
     <motion.div  
       initial={{
@@ -27,8 +28,12 @@ function App() {
         <h1>Header</h1>
       </Header>
       <Container>
-        <motion.h2 animate={{ x: parseInt(value * 2) }}>Super Cool</motion.h2>
+        <motion.h2 animate={{ x: parseInt(value * 2), opacity: toggle }}>Super Cool</motion.h2>
         <input type="range" min="-100" max="100" value={value} onChange={(e) => setValue(e.target.value)} />
+        <div>
+          <button onClick={() => toggle === 0 ? setToggle(1) : setToggle(0)}>Click Me</button>
+        </div>
+        <br></br>
         <motion.div>
           <CardGrid>
             <Card style={{ background: "var(--purp)" }}>
